@@ -62,9 +62,9 @@ public class DependenciasService {
 
 	  Dependencias dependenciaSalvo = dependenciasRepository.save(dependenciaExistente);
 	  
-	  DependenciasUpdateDTO dependenciaDTO = new DependenciasUpdateDTO();
-	  DependenciasDTO.setNome(dependenciaSalvo.getNome());
-	  DependenciasDTO.setCapacidade(dependenciaSalvo.getCapacidade());
+	  DependenciasDTO dependenciaDTO = new DependenciasDTO();
+	  dependenciaDTO.setNome(dependenciaSalvo.getNome());
+	  dependenciaDTO.setCapacidade(dependenciaSalvo.getCapacidade());
 
 	   return dependenciaDTO;
 	}

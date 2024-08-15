@@ -11,15 +11,16 @@ import lombok.Data;
 
 public class Funcionarios {
 
-@Column(nullable = false)
-private String nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
+    @Column(nullable = false)
+    private String nome;
 
-@Column(nullable = false)
-private String cargo;
+    @Column(nullable = false)
+    private String cargo;
 
-@Column(nullable = false)
-private boolean funcionarioAtivo = true;
+    @Column(name = "funcionario_ativo")
+    private boolean funcionarioAtivo = true;
 }

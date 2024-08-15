@@ -13,23 +13,24 @@ import lombok.Data;
 @Table(name = "reservas")
 public class Reservas {
 
- @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
- private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
- @OneToOne
- @JoinColumn(name = "dependencias_id", referencedColumnName = "id")
- private Dependencias dependencias;
+    @OneToOne
+    @JoinColumn(name = "dependencias_id", referencedColumnName = "id")
+    private Dependencias dependencias;
 
- @ManyToOne
- @JoinColumn(name = "funcionarios_id", referencedColumnName = "id")
- private Funcionarios funcionarios;
+    @OneToOne
+    @JoinColumn(name = "funcionarios_id", referencedColumnName = "id")
+    private Funcionarios funcionarios;
 
- @Column(name = "horario_inicio")
- private LocalDateTime inicio;
+    @Column(name = "horario_inicio")
+    private LocalDateTime inicio;
 
- @Column(name = "horario_fim")
- private LocalDateTime fim;
+    @Column(name = "horario_fim")
+    private LocalDateTime fim;
 
-@Column(nullable = false)
-private boolean reserva_ativa = true;
+    @Column(name = "reserva_ativa")
+    private boolean reservaAtiva = true;
 }

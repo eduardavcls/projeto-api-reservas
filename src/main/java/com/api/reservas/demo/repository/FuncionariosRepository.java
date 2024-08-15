@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FuncionariosRepository extends JpaRepository<Funcionarios, Long> {
   List<Funcionarios> findById(long id);
-  List<Funcionarios> findByFuncionariosAtivoTrue();
+  List<Funcionarios> findByFuncionarioAtivoTrue();
 }

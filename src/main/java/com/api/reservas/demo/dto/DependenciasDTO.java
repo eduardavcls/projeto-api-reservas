@@ -6,4 +6,5 @@ import lombok.Data;
 public class DependenciasDTO {
     private Long id;
     private String nome;
+    private int capacidade;
 }

@@ -64,7 +64,7 @@ public class DependenciasController {
         if(dependenciaExistente == null) {
             return ResponseEntity.notFound().build();
         }
-        DependenciasDTO dependenciasDTO = dependenciasService.updateDTO(dependenciasAtualizado, dependenciaExistente);
+        DependenciasDTO dependenciasDTO = dependenciasService.updateDTO(dependenciaExistente, dependenciasAtualizado);
             return ResponseEntity.ok(dependenciasDTO);
     }
     

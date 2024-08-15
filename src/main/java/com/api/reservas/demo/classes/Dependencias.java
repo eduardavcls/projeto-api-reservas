@@ -7,18 +7,20 @@ import jakarta.persistence.*;
 @Data
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table( name = "dependencias")
+@Table(name = "dependencias")
+
 public class Dependencias {
 
-@Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Column(nullable = false)
-private String nome;
+    @Column(nullable = false)
+    private String nome;
 
-@Column(nullable = false)
-private int capacidade;
+    @Column(nullable = false)
+    private int capacidade;
 
-@Column(nullable = false)
-private boolean disponivel = true;
+    @Column(name = "dependencia_disponivel")
+    private boolean dependenciasDisponivel = true;
 }

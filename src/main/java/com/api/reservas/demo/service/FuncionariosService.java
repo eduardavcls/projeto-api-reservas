@@ -35,7 +35,7 @@ public class FuncionariosService {
 	}
 
     public List<Funcionarios> getAllAtivos() {
-        return funcionariosRepository.findByFuncionariosAtivoTrue();
+        return funcionariosRepository.findByFuncionarioAtivoTrue();
     }
 
 }
