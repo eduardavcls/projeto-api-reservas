@@ -3,6 +3,7 @@ package com.api.reservas.demo.classes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import jakarta.persistence.*;
+
 @Data
 @EqualsAndHashCode(of = "id")
 @Entity
@@ -18,7 +19,6 @@ private String nome;
 @Column(nullable = false)
 private int capacidade;
 
-
-
-
+@Column(nullable = false)
+private boolean disponivel = true;
 }

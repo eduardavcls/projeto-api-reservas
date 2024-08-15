@@ -1,6 +1,6 @@
 package com.api.reservas.demo.classes;
-import com.api.reservas.demo.classes.Dependencias;
 
+import com.api.reservas.demo.classes.Dependencias;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
@@ -30,5 +30,6 @@ public class Reservas {
  @Column(name = "horario_fim")
  private LocalDateTime fim;
 
-
+@Column(nullable = false)
+private boolean reserva_ativa = true;
 }
