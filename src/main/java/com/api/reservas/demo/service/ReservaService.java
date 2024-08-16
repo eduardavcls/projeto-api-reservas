@@ -55,13 +55,6 @@ public class ReservaService {
     public Reserva delete(Long id) {
         Reserva reserva = getById(id);
         reserva.setReservaAtiva(false);
-
-        Dependencia dependencia = reserva.getDependencia();
-
-        if (dependencia != null) {
-            dependencia.setDependenciaDisponivel(true);
-            dependenciaRepository.save(dependencia);
-        }
         return reservaRepository.save(reserva);
     }
 

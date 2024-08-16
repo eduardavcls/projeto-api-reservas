@@ -7,8 +7,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.api.reservas.demo.classes.Funcionario;
 import com.api.reservas.demo.service.FuncionarioService;
@@ -64,7 +66,7 @@ public class FuncionarioController {
             }
     )
     @PostMapping
-    public ResponseEntity<FuncionarioDTO> create(@RequestBody FuncionarioDTO funcionarioDTO) {
+    public ResponseEntity<?> create(@Valid @RequestBody FuncionarioDTO funcionarioDTO) {
         FuncionarioDTO funcionarioSalvoDTO = funcionarioService.create(funcionarioDTO);
         return ResponseEntity.ok(funcionarioSalvoDTO);
     }
@@ -116,7 +118,7 @@ public class FuncionarioController {
             }
     )
     @PutMapping("/{id}")
-    public ResponseEntity<FuncionarioDTO> update(@PathVariable Long id, @RequestBody FuncionarioDTO funcionarioDTO) {
+    public ResponseEntity<FuncionarioDTO> update(@PathVariable Long id, @Valid @RequestBody FuncionarioDTO funcionarioDTO) {
         FuncionarioDTO funcionarioAtualizadoDTO = funcionarioService.update(id, funcionarioDTO);
         if (funcionarioAtualizadoDTO == null) {
             return ResponseEntity.notFound().build();

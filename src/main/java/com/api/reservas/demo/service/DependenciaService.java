@@ -30,7 +30,6 @@ public class DependenciaService {
 	public void delete(Long id) {
 		Dependencia dependencia = getById(id);
 		dependenciaRepository.delete(dependencia);
-
 	}
 
 	public DependenciaDTO update(Long id, DependenciaDTO dependenciaAtualizado) {

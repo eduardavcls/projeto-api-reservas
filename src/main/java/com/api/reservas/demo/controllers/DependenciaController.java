@@ -5,8 +5,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.api.reservas.demo.classes.Dependencia;
 import com.api.reservas.demo.dto.DependenciaDTO;
@@ -63,7 +65,7 @@ public class DependenciaController {
             }
     )
     @PostMapping
-    public ResponseEntity<DependenciaDTO> create(@RequestBody DependenciaDTO dependenciaDTO) {
+    public ResponseEntity<?> create(@Valid @RequestBody DependenciaDTO dependenciaDTO) {
         DependenciaDTO dependenciaSalvaDTO = dependenciaService.create(dependenciaDTO);
         return ResponseEntity.ok(dependenciaSalvaDTO);
     }
@@ -97,7 +99,7 @@ public class DependenciaController {
             }
     )
     @PutMapping("/{id}")
-    public ResponseEntity<DependenciaDTO> update(@PathVariable Long id, @RequestBody DependenciaDTO dependenciaDTO) {
+    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody DependenciaDTO dependenciaDTO) {
         DependenciaDTO dependenciaAtualizadoDTO = dependenciaService.update(id, dependenciaDTO);
 
         if (dependenciaAtualizadoDTO == null) {
