@@ -10,13 +10,13 @@ import lombok.Data;
 public class ReservaDTO {
     @NotNull
     DependenciasDTO dependencia;
-    
+
     @NotNull
     FuncionariosDTO funcionario;
-    
+
     @NotNull
     LocalDateTime inicio;
-    
+
     @NotNull
     LocalDateTime fim;
 
