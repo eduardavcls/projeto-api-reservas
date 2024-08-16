@@ -12,27 +12,26 @@ import com.api.reservas.demo.repository.FuncionariosRepository;
 public class FuncionariosService {
 
     @Autowired
-     private FuncionariosRepository funcionariosRepository;
+    private FuncionariosRepository funcionariosRepository;
 
-	public List<Funcionarios> getAll() {
-		return funcionariosRepository.findAll();
-	}
+    public List<Funcionarios> getAll() {
+        return funcionariosRepository.findAll();
+    }
 
     public Funcionarios getById(Long id) {
-        return funcionariosRepository.findById(id)
-										.orElse(null);
+        return funcionariosRepository.findById(id).orElse(null);
     }
-    
-	public Funcionarios create(Funcionarios funcionarios) {
-		return funcionariosRepository.save(funcionarios);
-	
-	}
 
-	public Funcionarios delete(Long id) {
+    public Funcionarios create(Funcionarios funcionarios) {
+        return funcionariosRepository.save(funcionarios);
+
+    }
+
+    public Funcionarios delete(Long id) {
         Funcionarios funcionarios = getById(id);
         funcionarios.setFuncionarioAtivo(false);
         return funcionariosRepository.save(funcionarios);
-	}
+    }
 
     public List<Funcionarios> getAllAtivos() {
         return funcionariosRepository.findByFuncionarioAtivoTrue();

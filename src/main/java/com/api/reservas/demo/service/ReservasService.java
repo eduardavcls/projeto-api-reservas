@@ -31,8 +31,7 @@ public class ReservasService {
     }
 
     public Reservas getById(Long id) {
-        return reservasRepository.findById(id)
-                .orElse(null);
+        return reservasRepository.findById(id).orElse(null);
     }
 
     public ReservaDTO create(ReservaDTO reservaDTO) {

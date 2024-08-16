@@ -15,13 +15,12 @@ public class DependenciasService {
 	@Autowired
 	private DependenciasRepository dependenciasRepository;
 
-	public List<Dependencias> getAll(){
+	public List<Dependencias> getAll() {
 		return dependenciasRepository.findAll();
 	}
 
 	public Dependencias getById(Long id) {
-		return dependenciasRepository.findById(id)
-										.orElse(null);
+		return dependenciasRepository.findById(id).orElse(null);
 	}
 
 	public List<Dependencias> getAllDisponiveis() {
@@ -35,10 +34,10 @@ public class DependenciasService {
 	public void delete(Long id) {
 		Dependencias dependencias = getById(id);
 		dependenciasRepository.delete(dependencias);
-		
+
 	}
 
-	public Dependencias update(Long id, Dependencias dependencias){
+	public Dependencias update(Long id, Dependencias dependencias) {
 		Dependencias dependenciasExistente = getById(id);
 
 		if (dependenciasExistente == null) {
@@ -47,42 +46,43 @@ public class DependenciasService {
 
 		dependenciasExistente.setNome(dependencias.getNome());
 		dependenciasExistente.setCapacidade(dependencias.getCapacidade());
-		
+
 		return create(dependenciasExistente);
 	}
 
-	public DependenciasDTO updateDTO(Dependencias dependenciaExistente, DependenciasUpdateDTO dependenciasAtualizado ) {
-		
-		if(dependenciasAtualizado.getNome() != null){
+	public DependenciasDTO updateDTO(Dependencias dependenciaExistente, DependenciasUpdateDTO dependenciasAtualizado) {
+
+		if (dependenciasAtualizado.getNome() != null) {
 			dependenciaExistente.setNome(dependenciasAtualizado.getNome());
 		}
-		if ( dependenciasAtualizado.getCapacidade() != 0 ) {
+		if (dependenciasAtualizado.getCapacidade() != 0) {
 			dependenciaExistente.setCapacidade(dependenciasAtualizado.getCapacidade());
 		}
 
-	  Dependencias dependenciaSalvo = dependenciasRepository.save(dependenciaExistente);
-	  
-	  DependenciasDTO dependenciaDTO = new DependenciasDTO();
-	  dependenciaDTO.setNome(dependenciaSalvo.getNome());
-	  dependenciaDTO.setCapacidade(dependenciaSalvo.getCapacidade());
+		Dependencias dependenciaSalvo = dependenciasRepository.save(dependenciaExistente);
 
-	   return dependenciaDTO;
+		DependenciasDTO dependenciaDTO = new DependenciasDTO();
+		dependenciaDTO.setNome(dependenciaSalvo.getNome());
+		dependenciaDTO.setCapacidade(dependenciaSalvo.getCapacidade());
+
+		return dependenciaDTO;
 	}
 
-/*public List<DependenciasDTO> getDependenciasDTO() {
-
-        List<DependenciasDTO> dependenciasDTO = dependenciasRepository.findAll();
-
-        List<DependenciasDTO> dependenciasDTO = new ArrayList<>();
-
-        for (Dependencias dependencias : dependencias) {
-            DependenciasDTO dependenciasDTO = new DependenciasDTO();
-            dependenciasDTO.setId(dependencias.getId());
-            dependenciasDTO.setNome(dependencias.getNome());
-
-            dependenciasDTO.add(dependenciasDTO);
-        }
-        return dependenciasDTO;
-    }*/
+	/*
+	 * public List<DependenciasDTO> getDependenciasDTO() {
+	 * 
+	 * List<DependenciasDTO> dependenciasDTO = dependenciasRepository.findAll();
+	 * 
+	 * List<DependenciasDTO> dependenciasDTO = new ArrayList<>();
+	 * 
+	 * for (Dependencias dependencias : dependencias) {
+	 * DependenciasDTO dependenciasDTO = new DependenciasDTO();
+	 * dependenciasDTO.setId(dependencias.getId());
+	 * dependenciasDTO.setNome(dependencias.getNome());
+	 * 
+	 * dependenciasDTO.add(dependenciasDTO);
+	 * }
+	 * return dependenciasDTO;
+	 * }
+	 */
 }
-

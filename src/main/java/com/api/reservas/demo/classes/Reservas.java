@@ -32,5 +32,5 @@ public class Reservas {
     private LocalDateTime fim;
 
     @Column(name = "reserva_ativa")
-    private boolean reservaAtiva = true;
+    private Boolean reservaAtiva = true;
 }

@@ -22,5 +22,5 @@ public class Dependencias {
     private int capacidade;
 
     @Column(name = "dependencia_disponivel")
-    private boolean dependenciasDisponivel = true;
+    private Boolean dependenciasDisponivel = true;
 }

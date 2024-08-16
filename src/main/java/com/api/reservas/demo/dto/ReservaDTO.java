@@ -20,6 +20,6 @@ public class ReservaDTO {
     @NotNull
     LocalDateTime fim;
 
-    boolean reservaAtiva;
+    Boolean reservaAtiva;
 
 }

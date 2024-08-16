@@ -37,6 +37,7 @@ public class ReservasController {
     // criar Reservas
     @PostMapping
     public ResponseEntity<ReservaDTO> create(@RequestBody ReservaDTO reserva) {
+        System.out.println(reserva.toString());
         ReservaDTO reservaSalva = reservasService.create(reserva);
         return ResponseEntity.ok(reservaSalva);
     }

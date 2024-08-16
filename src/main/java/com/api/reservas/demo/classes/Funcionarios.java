@@ -22,5 +22,5 @@ public class Funcionarios {
     private String cargo;
 
     @Column(name = "funcionario_ativo")
-    private boolean funcionarioAtivo = true;
+    private Boolean funcionarioAtivo = true;
 }
