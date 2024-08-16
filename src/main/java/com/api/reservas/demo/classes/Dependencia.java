@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "dependencias")
 
-public class Dependencias {
+public class Dependencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,5 @@ public class Dependencias {
     private int capacidade;
 
     @Column(name = "dependencia_disponivel")
-    private Boolean dependenciasDisponivel = true;
+    private Boolean dependenciaDisponivel = true;
 }

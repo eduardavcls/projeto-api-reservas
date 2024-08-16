@@ -1,7 +1,6 @@
 package com.api.reservas.demo.controllers;
 
 import java.util.List;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -9,18 +8,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.api.reservas.demo.classes.Reservas;
+import com.api.reservas.demo.classes.Reserva;
 import com.api.reservas.demo.dto.ReservaDTO;
-import com.api.reservas.demo.service.ReservasService;
+import com.api.reservas.demo.service.ReservaService;
 
 @RestController
 @RequestMapping("reservas")
 @Tag(name = "Reservas", description = "Endpoints para gerenciar reservas")
-public class ReservasController {
+public class ReservaController {
 
     @Autowired
-    private ReservasService reservasService;
+    private ReservaService reservaService;
 
     @Operation(
             summary = "Busca todas as reservas",
@@ -31,8 +29,8 @@ public class ReservasController {
             }
     )
     @GetMapping
-    public ResponseEntity<List<Reservas>> getAll() {
-        List<Reservas> reservas = reservasService.getAll();
+    public ResponseEntity<List<Reserva>> getAll() {
+        List<Reserva> reservas = reservaService.getAll();
         return ResponseEntity.ok(reservas);
     }
 
@@ -48,12 +46,12 @@ public class ReservasController {
             }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Reservas> getById(@PathVariable Long id) {
-        Reservas reservas = reservasService.getById(id);
-        if (reservas == null) {
+    public ResponseEntity<Reserva> getById(@PathVariable Long id) {
+        Reserva reserva = reservaService.getById(id);
+        if (reserva == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(reservas);
+        return ResponseEntity.ok(reserva);
     }
 
     @Operation(
@@ -66,7 +64,7 @@ public class ReservasController {
     )
     @PostMapping
     public ResponseEntity<ReservaDTO> create(@RequestBody ReservaDTO reserva) {
-        ReservaDTO reservaSalva = reservasService.create(reserva);
+        ReservaDTO reservaSalva = reservaService.create(reserva);
         return ResponseEntity.ok(reservaSalva);
     }
 
@@ -83,12 +81,12 @@ public class ReservasController {
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        Reservas reservas = reservasService.getById(id);
+        Reserva reserva = reservaService.getById(id);
 
-        if (reservas == null) {
+        if (reserva == null) {
             return ResponseEntity.notFound().build();
         }
-        reservasService.delete(id);
+        reservaService.delete(id);
         return ResponseEntity.ok().build();
     }
 }

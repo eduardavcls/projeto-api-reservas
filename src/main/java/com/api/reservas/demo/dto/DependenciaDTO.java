@@ -3,7 +3,7 @@ package com.api.reservas.demo.dto;
 import lombok.Data;
 
 @Data
-public class DependenciasDTO {
+public class DependenciaDTO {
     private Long id;
     private String nome;
     private int capacidade;

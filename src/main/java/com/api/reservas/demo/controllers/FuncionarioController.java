@@ -1,7 +1,6 @@
 package com.api.reservas.demo.controllers;
 
 import java.util.List;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -9,17 +8,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.api.reservas.demo.classes.Funcionarios;
-import com.api.reservas.demo.service.FuncionariosService;
+import com.api.reservas.demo.classes.Funcionario;
+import com.api.reservas.demo.service.FuncionarioService;
 
 @RestController
 @RequestMapping("funcionarios")
 @Tag(name = "Funcionários", description = "Endpoints para gerenciar funcionários")
-public class FuncionariosController {
+public class FuncionarioController {
 
     @Autowired
-    private FuncionariosService funcionariosService;
+    private FuncionarioService funcionarioService;
 
     @Operation(
             summary = "Busca todos os funcionários",
@@ -30,8 +28,8 @@ public class FuncionariosController {
             }
     )
     @GetMapping
-    public ResponseEntity<List<Funcionarios>> getAll() {
-        List<Funcionarios> funcionarios = funcionariosService.getAll();
+    public ResponseEntity<List<Funcionario>> getAll() {
+        List<Funcionario> funcionarios = funcionarioService.getAll();
         return ResponseEntity.ok(funcionarios);
     }
 
@@ -47,12 +45,12 @@ public class FuncionariosController {
             }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Funcionarios> getById(@PathVariable Long id) {
-        Funcionarios funcionarios = funcionariosService.getById(id);
-        if (funcionarios == null) {
+    public ResponseEntity<Funcionario> getById(@PathVariable Long id) {
+        Funcionario funcionario = funcionarioService.getById(id);
+        if (funcionario == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(funcionarios);
+        return ResponseEntity.ok(funcionario);
     }
 
     @Operation(
@@ -64,8 +62,8 @@ public class FuncionariosController {
             }
     )
     @PostMapping
-    public ResponseEntity<Funcionarios> create(@RequestBody Funcionarios funcionarios) {
-        Funcionarios funcionarioSalvo = funcionariosService.create(funcionarios);
+    public ResponseEntity<Funcionario> create(@RequestBody Funcionario funcionario) {
+        Funcionario funcionarioSalvo = funcionarioService.create(funcionario);
         return ResponseEntity.ok(funcionarioSalvo);
     }
 
@@ -81,13 +79,13 @@ public class FuncionariosController {
             }
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<Funcionarios> delete(@PathVariable Long id) {
-        Funcionarios funcionarios = funcionariosService.getById(id);
-        if (funcionarios == null) {
+    public ResponseEntity<Funcionario> delete(@PathVariable Long id) {
+        Funcionario funcionario = funcionarioService.getById(id);
+        if (funcionario == null) {
             return ResponseEntity.notFound().build();
         }
-        funcionariosService.delete(id);
-        return ResponseEntity.ok(funcionarios);
+        funcionarioService.delete(id);
+        return ResponseEntity.ok(funcionario);
     }
 
     @Operation(
@@ -99,8 +97,8 @@ public class FuncionariosController {
             }
     )
     @GetMapping("/ativos")
-    public ResponseEntity<List<Funcionarios>> getAllAtivos() {
-        List<Funcionarios> funcionarios = funcionariosService.getAllAtivos();
+    public ResponseEntity<List<Funcionario>> getAllAtivos() {
+        List<Funcionario> funcionarios = funcionarioService.getAllAtivos();
         return ResponseEntity.ok(funcionarios);
     }
 }

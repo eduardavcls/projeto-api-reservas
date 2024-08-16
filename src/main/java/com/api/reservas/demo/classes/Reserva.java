@@ -1,7 +1,6 @@
 package com.api.reservas.demo.classes;
 
-import com.api.reservas.demo.classes.Dependencias;
-import java.time.LocalDate;
+import com.api.reservas.demo.classes.Dependencia;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -11,7 +10,7 @@ import lombok.Data;
 @EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "reservas")
-public class Reservas {
+public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +18,11 @@ public class Reservas {
 
     @OneToOne
     @JoinColumn(name = "dependencias_id", referencedColumnName = "id")
-    private Dependencias dependencias;
+    private Dependencia dependencia;
 
     @OneToOne
     @JoinColumn(name = "funcionarios_id", referencedColumnName = "id")
-    private Funcionarios funcionarios;
+    private Funcionario funcionario;
 
     @Column(name = "horario_inicio")
     private LocalDateTime inicio;

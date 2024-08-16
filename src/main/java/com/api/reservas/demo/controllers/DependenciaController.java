@@ -1,7 +1,6 @@
 package com.api.reservas.demo.controllers;
 
 import java.util.List;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -9,18 +8,17 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.api.reservas.demo.classes.Dependencias;
-import com.api.reservas.demo.dto.DependenciasDTO;
-import com.api.reservas.demo.service.DependenciasService;
+import com.api.reservas.demo.classes.Dependencia;
+import com.api.reservas.demo.dto.DependenciaDTO;
+import com.api.reservas.demo.service.DependenciaService;
 
 @RestController
 @RequestMapping("dependencias")
 @Tag(name = "Dependências", description = "Endpoints para gerenciar dependências")
-public class DependenciasController {
+public class DependenciaController {
 
     @Autowired
-    private DependenciasService dependenciasService;
+    private DependenciaService dependenciaService;
 
     @Operation(
             summary = "Busca todas as dependências",
@@ -31,8 +29,8 @@ public class DependenciasController {
             }
     )
     @GetMapping
-    public ResponseEntity<List<Dependencias>> getAll() {
-        List<Dependencias> dependencias = dependenciasService.getAll();
+    public ResponseEntity<List<Dependencia>> getAll() {
+        List<Dependencia> dependencias = dependenciaService.getAll();
         return ResponseEntity.ok(dependencias);
     }
 
@@ -45,8 +43,8 @@ public class DependenciasController {
             }
     )
     @GetMapping("/disponiveis")
-    public ResponseEntity<List<Dependencias>> getAllDisponiveis() {
-        List<Dependencias> dependencias = dependenciasService.getAllDisponiveis();
+    public ResponseEntity<List<Dependencia>> getAllDisponiveis() {
+        List<Dependencia> dependencias = dependenciaService.getAllDisponiveis();
         return ResponseEntity.ok(dependencias);
     }
 
@@ -62,12 +60,12 @@ public class DependenciasController {
             }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<Dependencias> getById(@PathVariable Long id) {
-        Dependencias dependencias = dependenciasService.getById(id);
-        if (dependencias == null) {
+    public ResponseEntity<Dependencia> getById(@PathVariable Long id) {
+        Dependencia dependencia = dependenciaService.getById(id);
+        if (dependencia == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(dependencias);
+        return ResponseEntity.ok(dependencia);
     }
 
     @Operation(
@@ -79,8 +77,8 @@ public class DependenciasController {
             }
     )
     @PostMapping
-    public ResponseEntity<Dependencias> create(@RequestBody Dependencias dependencias) {
-        Dependencias dependenciaSalva = dependenciasService.create(dependencias);
+    public ResponseEntity<Dependencia> create(@RequestBody Dependencia dependencia) {
+        Dependencia dependenciaSalva = dependenciaService.create(dependencia);
         return ResponseEntity.ok(dependenciaSalva);
     }
 
@@ -97,7 +95,7 @@ public class DependenciasController {
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        dependenciasService.delete(id);
+        dependenciaService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -113,12 +111,12 @@ public class DependenciasController {
             }
     )
     @PutMapping("/{id}")
-    public ResponseEntity<DependenciasDTO> updateDependencia(@PathVariable Long id, @RequestBody DependenciasDTO dependenciasDTO) {
-        DependenciasDTO updatedDependencia = dependenciasService.updateDTO(id, dependenciasDTO);
+    public ResponseEntity<DependenciaDTO> updateDependencia(@PathVariable Long id, @RequestBody DependenciaDTO dependenciaDTO) {
+        DependenciaDTO dependenciaAtualizado = dependenciaService.updateDTO(id, dependenciaDTO);
 
-        if (updatedDependencia == null) {
+        if (dependenciaAtualizado == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(updatedDependencia);
+        return ResponseEntity.ok(dependenciaAtualizado);
     }
 }

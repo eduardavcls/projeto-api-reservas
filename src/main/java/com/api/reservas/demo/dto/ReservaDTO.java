@@ -1,7 +1,7 @@
 package com.api.reservas.demo.dto;
 
 import java.time.LocalDateTime;
-import com.api.reservas.demo.classes.Funcionarios;
+import com.api.reservas.demo.classes.Funcionario;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -9,10 +9,10 @@ import lombok.Data;
 @Data
 public class ReservaDTO {
     @NotNull
-    DependenciasDTO dependencia;
+    DependenciaDTO dependencia;
 
     @NotNull
-    FuncionariosDTO funcionario;
+    FuncionarioDTO funcionario;
 
     @NotNull
     LocalDateTime inicio;
