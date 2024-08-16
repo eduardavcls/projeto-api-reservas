@@ -17,7 +17,7 @@ public class DependenciasController {
     private DependenciasService dependenciasService;
     
     //buscar dependências
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<Dependencias>>getAll(){
         List<Dependencias> dependencias = dependenciasService.getAll();
         return ResponseEntity.ok(dependencias);
@@ -78,6 +78,6 @@ public class DependenciasController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(dependenciasAtualizado);
-    }
+    }*/
   
 }
