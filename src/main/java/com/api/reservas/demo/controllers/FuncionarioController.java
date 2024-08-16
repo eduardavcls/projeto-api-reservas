@@ -1,6 +1,8 @@
 package com.api.reservas.demo.controllers;
 
 import java.util.List;
+
+import com.api.reservas.demo.dto.FuncionarioDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -62,9 +64,9 @@ public class FuncionarioController {
             }
     )
     @PostMapping
-    public ResponseEntity<Funcionario> create(@RequestBody Funcionario funcionario) {
-        Funcionario funcionarioSalvo = funcionarioService.create(funcionario);
-        return ResponseEntity.ok(funcionarioSalvo);
+    public ResponseEntity<FuncionarioDTO> create(@RequestBody FuncionarioDTO funcionarioDTO) {
+        FuncionarioDTO funcionarioSalvoDTO = funcionarioService.create(funcionarioDTO);
+        return ResponseEntity.ok(funcionarioSalvoDTO);
     }
 
     @Operation(
@@ -100,5 +102,25 @@ public class FuncionarioController {
     public ResponseEntity<List<Funcionario>> getAllAtivos() {
         List<Funcionario> funcionarios = funcionarioService.getAllAtivos();
         return ResponseEntity.ok(funcionarios);
+    }
+
+    @Operation(
+            summary = "Atualiza um funcionário",
+            description = "Atualiza os dados de um funcionário existente com base no ID fornecido.",
+            parameters = {
+                    @Parameter(name = "id", description = "ID do funcionário a ser atualizado", required = true, example = "1")
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Funcionário atualizado com sucesso"),
+                    @ApiResponse(responseCode = "404", description = "Funcionário não encontrado")
+            }
+    )
+    @PutMapping("/{id}")
+    public ResponseEntity<FuncionarioDTO> update(@PathVariable Long id, @RequestBody FuncionarioDTO funcionarioDTO) {
+        FuncionarioDTO funcionarioAtualizadoDTO = funcionarioService.update(id, funcionarioDTO);
+        if (funcionarioAtualizadoDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(funcionarioAtualizadoDTO);
     }
 }

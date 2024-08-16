@@ -20,7 +20,4 @@ public class Dependencia {
 
     @Column(nullable = false)
     private int capacidade;
-
-    @Column(name = "dependencia_disponivel")
-    private Boolean dependenciaDisponivel = true;
 }

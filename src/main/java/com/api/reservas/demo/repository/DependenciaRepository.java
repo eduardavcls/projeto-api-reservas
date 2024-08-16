@@ -5,5 +5,4 @@ import com.api.reservas.demo.classes.Dependencia;
 import java.util.List;
 
 public interface DependenciaRepository extends JpaRepository<Dependencia, Long>{
-    List<Dependencia> findByDependenciasDisponivelTrue();
 }

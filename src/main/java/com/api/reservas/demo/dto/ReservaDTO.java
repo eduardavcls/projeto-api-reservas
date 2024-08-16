@@ -21,5 +21,4 @@ public class ReservaDTO {
     LocalDateTime fim;
 
     Boolean reservaAtiva;
-
 }

@@ -35,20 +35,6 @@ public class DependenciaController {
     }
 
     @Operation(
-            summary = "Busca todas as dependências disponíveis",
-            description = "Obtém uma lista de dependências que estão disponíveis no sistema.",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Lista de dependências disponíveis retornada com sucesso"),
-                    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-            }
-    )
-    @GetMapping("/disponiveis")
-    public ResponseEntity<List<Dependencia>> getAllDisponiveis() {
-        List<Dependencia> dependencias = dependenciaService.getAllDisponiveis();
-        return ResponseEntity.ok(dependencias);
-    }
-
-    @Operation(
             summary = "Busca uma dependência por ID",
             description = "Obtém uma dependência específica com base no ID fornecido.",
             parameters = {
@@ -77,9 +63,9 @@ public class DependenciaController {
             }
     )
     @PostMapping
-    public ResponseEntity<Dependencia> create(@RequestBody Dependencia dependencia) {
-        Dependencia dependenciaSalva = dependenciaService.create(dependencia);
-        return ResponseEntity.ok(dependenciaSalva);
+    public ResponseEntity<DependenciaDTO> create(@RequestBody DependenciaDTO dependenciaDTO) {
+        DependenciaDTO dependenciaSalvaDTO = dependenciaService.create(dependenciaDTO);
+        return ResponseEntity.ok(dependenciaSalvaDTO);
     }
 
     @Operation(
@@ -111,12 +97,12 @@ public class DependenciaController {
             }
     )
     @PutMapping("/{id}")
-    public ResponseEntity<DependenciaDTO> updateDependencia(@PathVariable Long id, @RequestBody DependenciaDTO dependenciaDTO) {
-        DependenciaDTO dependenciaAtualizado = dependenciaService.updateDTO(id, dependenciaDTO);
+    public ResponseEntity<DependenciaDTO> update(@PathVariable Long id, @RequestBody DependenciaDTO dependenciaDTO) {
+        DependenciaDTO dependenciaAtualizadoDTO = dependenciaService.update(id, dependenciaDTO);
 
-        if (dependenciaAtualizado == null) {
+        if (dependenciaAtualizadoDTO == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(dependenciaAtualizado);
+        return ResponseEntity.ok(dependenciaAtualizadoDTO);
     }
 }

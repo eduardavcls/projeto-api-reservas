@@ -1,6 +1,8 @@
 package com.api.reservas.demo.service;
 
 import java.util.List;
+
+import com.api.reservas.demo.dto.FuncionarioDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.api.reservas.demo.classes.Dependencia;
@@ -21,9 +23,10 @@ public class FuncionarioService {
         return funcionarioRepository.findById(id).orElse(null);
     }
 
-    public Funcionario create(Funcionario funcionario) {
-        return funcionarioRepository.save(funcionario);
-
+    public FuncionarioDTO create(FuncionarioDTO funcionarioDTO) {
+        Funcionario funcionario = converterParaEntidade(funcionarioDTO);
+        Funcionario funcionarioSalvo = funcionarioRepository.save(funcionario);
+        return converterParaDTO(funcionarioSalvo);
     }
 
     public Funcionario delete(Long id) {
@@ -34,6 +37,43 @@ public class FuncionarioService {
 
     public List<Funcionario> getAllAtivos() {
         return funcionarioRepository.findByFuncionarioAtivoTrue();
+    }
+
+    public FuncionarioDTO update(Long id, FuncionarioDTO funcionarioDTO) {
+        Funcionario funcionarioExistente = getById(id);
+
+        if (funcionarioExistente == null) {
+            return null;
+        }
+
+        if (funcionarioDTO.getNome() != null) {
+            funcionarioExistente.setNome(funcionarioDTO.getNome());
+        }
+
+        if (funcionarioDTO.getCargo() != null) {
+            funcionarioExistente.setCargo(funcionarioDTO.getCargo());
+        }
+
+        Funcionario funcionarioAtualizado = funcionarioRepository.save(funcionarioExistente);
+        return converterParaDTO(funcionarioAtualizado);
+    }
+
+    private FuncionarioDTO converterParaDTO(Funcionario funcionario) {
+        FuncionarioDTO dto = new FuncionarioDTO();
+        dto.setId(funcionario.getId());
+        dto.setNome(funcionario.getNome());
+        dto.setCargo(funcionario.getCargo());
+
+        return dto;
+    }
+
+    private Funcionario converterParaEntidade(FuncionarioDTO funcionarioDTO) {
+        Funcionario funcionario = new Funcionario();
+        funcionario.setId(funcionarioDTO.getId());
+        funcionario.setNome(funcionarioDTO.getNome());
+        funcionario.setCargo(funcionarioDTO.getCargo());
+
+        return funcionario;
     }
 
 }

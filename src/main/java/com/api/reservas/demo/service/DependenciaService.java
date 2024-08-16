@@ -21,12 +21,10 @@ public class DependenciaService {
 		return dependenciaRepository.findById(id).orElse(null);
 	}
 
-	public List<Dependencia> getAllDisponiveis() {
-		return dependenciaRepository.findByDependenciasDisponivelTrue();
-	}
-
-	public Dependencia create(Dependencia dependencia) {
-		return dependenciaRepository.save(dependencia);
+	public DependenciaDTO create(DependenciaDTO dependenciaDTO) {
+		Dependencia dependencia = converterParaEntidade(dependenciaDTO);
+		Dependencia dependenciaSalva = dependenciaRepository.save(dependencia);
+		return converterParaDTO(dependenciaSalva);
 	}
 
 	public void delete(Long id) {
@@ -35,9 +33,9 @@ public class DependenciaService {
 
 	}
 
-	public DependenciaDTO updateDTO(Long id, DependenciaDTO dependenciaAtualizado) {
+	public DependenciaDTO update(Long id, DependenciaDTO dependenciaAtualizado) {
 		// Obtém a dependência existente pelo ID
-		Dependencia dependenciaExistente = dependenciaRepository.findById(id).orElse(null);
+		Dependencia dependenciaExistente = getById(id);
 
 		if (dependenciaExistente == null) {
 			return null;
@@ -53,15 +51,9 @@ public class DependenciaService {
 		}
 
 		// Salva a dependência atualizada
-		Dependencia dependenciaSalvo = dependenciaRepository.save(dependenciaExistente);
+		Dependencia dependenciaSalva = dependenciaRepository.save(dependenciaExistente);
+		return converterParaDTO(dependenciaSalva);
 
-		// Cria e retorna o DTO com as informações atualizadas
-		DependenciaDTO dependenciaDTO = new DependenciaDTO();
-		dependenciaDTO.setId(dependenciaSalvo.getId());
-		dependenciaDTO.setNome(dependenciaSalvo.getNome());
-		dependenciaDTO.setCapacidade(dependenciaSalvo.getCapacidade());
-
-		return dependenciaDTO;
 	}
 
 	private DependenciaDTO converterParaDTO(Dependencia dependencia) {
@@ -69,6 +61,7 @@ public class DependenciaService {
 		dto.setId(dependencia.getId());
 		dto.setNome(dependencia.getNome());
 		dto.setCapacidade(dependencia.getCapacidade());
+
 		return dto;
 	}
 
@@ -77,6 +70,7 @@ public class DependenciaService {
 		dependencia.setId(dependenciaDTO.getId());
 		dependencia.setNome(dependenciaDTO.getNome());
 		dependencia.setCapacidade(dependenciaDTO.getCapacidade());
+
 		return dependencia;
 	}
 
