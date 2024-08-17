@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Positive;
 
 @Data
 public class DependenciaDTO {
-    @NotNull(message = "O id é obrigatório")
     private Long id;
 
     @NotBlank(message = "Nome não pode ser vazio")

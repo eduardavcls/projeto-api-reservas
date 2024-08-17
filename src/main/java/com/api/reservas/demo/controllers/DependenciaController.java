@@ -65,7 +65,7 @@ public class DependenciaController {
             }
     )
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody DependenciaDTO dependenciaDTO) {
+    public ResponseEntity<DependenciaDTO> create(@Valid @RequestBody DependenciaDTO dependenciaDTO) {
         DependenciaDTO dependenciaSalvaDTO = dependenciaService.create(dependenciaDTO);
         return ResponseEntity.ok(dependenciaSalvaDTO);
     }
@@ -99,7 +99,7 @@ public class DependenciaController {
             }
     )
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody DependenciaDTO dependenciaDTO) {
+    public ResponseEntity<DependenciaDTO> update(@PathVariable Long id, @Valid @RequestBody DependenciaDTO dependenciaDTO) {
         DependenciaDTO dependenciaAtualizadoDTO = dependenciaService.update(id, dependenciaDTO);
 
         if (dependenciaAtualizadoDTO == null) {

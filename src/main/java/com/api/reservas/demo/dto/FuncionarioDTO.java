@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class FuncionarioDTO {
-    @NotNull(message = "O id é obrigatório")
     private Long id;
 
     @NotBlank(message = "Nome não pode ser vazio")

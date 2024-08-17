@@ -57,7 +57,7 @@ public class DependenciaService {
 
 	private DependenciaDTO converterParaDTO(Dependencia dependencia) {
 		DependenciaDTO dto = new DependenciaDTO();
-		dto.setId(dependencia.getId());
+		//dto.setId(dependencia.getId());
 		dto.setNome(dependencia.getNome());
 		dto.setCapacidade(dependencia.getCapacidade());
 
@@ -66,7 +66,7 @@ public class DependenciaService {
 
 	private Dependencia converterParaEntidade(DependenciaDTO dependenciaDTO) {
 		Dependencia dependencia = new Dependencia();
-		dependencia.setId(dependenciaDTO.getId());
+		//dependencia.setId(dependenciaDTO.getId());
 		dependencia.setNome(dependenciaDTO.getNome());
 		dependencia.setCapacidade(dependenciaDTO.getCapacidade());
 

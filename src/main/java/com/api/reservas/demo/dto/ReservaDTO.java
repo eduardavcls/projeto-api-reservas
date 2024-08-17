@@ -2,13 +2,15 @@ package com.api.reservas.demo.dto;
 
 import java.time.LocalDateTime;
 import com.api.reservas.demo.classes.Funcionario;
+import com.api.reservas.demo.validation.ValidDateRange;
+
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
+@ValidDateRange // Anotação customizada
 public class ReservaDTO {
-    @NotNull(message = "O id é obrigatório")
     private Long id;
 
     @NotNull(message = "Dependência não pode ser nula")
@@ -25,5 +27,5 @@ public class ReservaDTO {
     @Future(message = "Data de fim deve ser no futuro")
     private LocalDateTime fim;
 
-    Boolean reservaAtiva;
+    Boolean reservaAtiva = true;
 }

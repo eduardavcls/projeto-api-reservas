@@ -66,7 +66,7 @@ public class FuncionarioController {
             }
     )
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody FuncionarioDTO funcionarioDTO) {
+    public ResponseEntity<FuncionarioDTO> create(@Valid @RequestBody FuncionarioDTO funcionarioDTO) {
         FuncionarioDTO funcionarioSalvoDTO = funcionarioService.create(funcionarioDTO);
         return ResponseEntity.ok(funcionarioSalvoDTO);
     }

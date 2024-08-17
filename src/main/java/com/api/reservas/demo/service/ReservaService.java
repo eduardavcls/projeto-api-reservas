@@ -37,7 +37,7 @@ public class ReservaService {
         Reserva reserva = new Reserva();
         reserva.setDependencia(dependenciaService.getById(reservaDTO.getDependencia().getId()));
         reserva.setFuncionario(funcionarioService.getById(reservaDTO.getFuncionario().getId()));
-        reserva.setInicio(reserva.getInicio());
+        reserva.setInicio(reservaDTO.getInicio());
         reserva.setFim(reservaDTO.getFim());
         reserva.setReservaAtiva(true);
 
